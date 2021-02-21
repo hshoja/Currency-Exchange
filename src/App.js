@@ -1,12 +1,12 @@
 import { Route, Switch } from "react-router-dom";
-import { Header } from "./components";
+import {  Layout } from "./components";
 import { Converter } from "./pages/converter";
 import { Currencies } from "./pages/currencies";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
+    <Layout>
+    
       <Switch>
         <Route exact path="/">
           <Converter />
@@ -15,7 +15,7 @@ function App() {
           <Currencies />
         </Route>
       </Switch>
-    </div>
+    </Layout>
   );
 }
 
