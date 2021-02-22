@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -6,18 +6,14 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
+import React, { useContext } from "react";
 import { PageTitle } from "../../components";
-import useCurrencies from "./useCurrencies";
 import { COLORS, SYMBOLS } from "../../constants";
-import { LinearProgress } from "@material-ui/core";
 import ConverterContext from "../../contexts/ConverterContext";
 import { GetArray } from "../../utils/array";
+import useCurrencies from "./useCurrencies";
 
 const useStyles = makeStyles({
-  table: {
-    // minWidth: 650,
-  },
   cell: {
     borderWidth: "0",
   },
@@ -33,7 +29,8 @@ const Currencies = () => {
 
   return (
     <>
-      <PageTitle title="US Dollar (USD) Exchange Rats" />
+      <PageTitle title="US Dollar (USD) Exchange Rates" />
+   
       <TableContainer component={Paper}>
        
         <Table className={classes.table} aria-label="simple table">
@@ -46,7 +43,7 @@ const Currencies = () => {
           </TableHead>
           <TableBody>
             {GetArray(rates).map(([symbol, rate]) => (
-              <TableRow key={symbol}>
+              <TableRow key={symbol} data-testid='row'>
                 <TableCell align="left" className={classes.cell}>
                   {symbol}
                 </TableCell>
