@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { URL_CURRENCIES } from "../../constants";
-import ConverterContext from "../../contexts/ConverterContext";
+import CurrenciesContext from "../../contexts/CurrenciesContext";
 
 const useCurrencies = () => {
-  const { updateRates, updateLoading } = useContext(ConverterContext);
+  const { updateRates, updateLoading } = useContext(CurrenciesContext);
   const handlres = useRef({ updateRates, updateLoading });
-  
+
   useEffect(() => {
     handlres.current.updateLoading(true);
     fetch(URL_CURRENCIES)

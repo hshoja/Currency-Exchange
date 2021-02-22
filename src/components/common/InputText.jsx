@@ -7,12 +7,8 @@ import {
 import React from "react";
 import { useStyle } from "./input.style";
 
-const InputText = ({ title }) => {
-  const [currency, setCurrency] = React.useState("EUR");
-
-  const handleChange = (event) => {
-    setCurrency(event.target.value);
-  };
+const InputText = ({ title ,symbol,value,onChange}) => {
+  
   const classes = useStyle();
 
   return (
@@ -20,11 +16,11 @@ const InputText = ({ title }) => {
       <Typography>{title}</Typography>
       <OutlinedInput
         id="outlined-select-currency"
-        value={currency}
-        onChange={handleChange}
+        value={value}
+        onChange={onChange}
         variant="outlined"
         className={classes.input}
-        endAdornment={<InputAdornment position="start">$</InputAdornment>}
+        endAdornment={<InputAdornment position="start">{symbol}</InputAdornment>}
       />
     </>
   );

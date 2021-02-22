@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import React, { useContext } from "react";
 import { PageTitle } from "../../components";
 import { COLORS, SYMBOLS } from "../../constants";
-import ConverterContext from "../../contexts/ConverterContext";
+import CurrenciesContext from "../../contexts/CurrenciesContext";
 import { GetArray } from "../../utils/array";
 import useCurrencies from "./useCurrencies";
 
@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 const Currencies = () => {
   const classes = useStyles();
     useCurrencies();
-    const {rates}=useContext(ConverterContext)
+    const {rates}=useContext(CurrenciesContext)
 
   return (
     <>
@@ -48,7 +48,7 @@ const Currencies = () => {
                   {symbol}
                 </TableCell>
                 <TableCell align="left" className={classes.cell}>
-                  {SYMBOLS[symbol].description}
+                  {SYMBOLS[symbol]?.description}
                 </TableCell>
                 <TableCell align="left" className={classes.cell}>
                   {rate}

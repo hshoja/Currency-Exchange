@@ -2,7 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import { render, screen } from "@testing-library/react";
 import { Currencies } from ".";
-import ConverterContext from "../../contexts/ConverterContext";
+import CurrenciesContext from "../../contexts/CurrenciesContext";
 
 describe("Currencies", () => {
   test("render <Currencies />", () => {
@@ -11,14 +11,16 @@ describe("Currencies", () => {
     ReactDom.unmountComponentAtNode(box);
   });
 
-  test("ConverterContext shows default value", () => {
+  test("CurrenciesContext shows default value", () => {
     render(<Currencies />);
     expect(screen.queryAllByTestId("row")).toHaveLength(0);
   });
 
   const customRender = (ui, values) =>
     render(
-      <ConverterContext.Provider value={values}>{ui}</ConverterContext.Provider>
+      <CurrenciesContext.Provider value={values}>
+        {ui}
+      </CurrenciesContext.Provider>
     );
 
   test("Currencies show value in table from provider", () => {

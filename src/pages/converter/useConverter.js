@@ -1,59 +1,77 @@
-import { useEffect, useState } from "react"
-
-const BASE_URL = 'https://api.exchangeratesapi.io/latest';
+import { useContext, useEffect, useRef, useState } from "react";
+import { URL_CONVERT } from "../../constants/urls";
+import ConverterContext from "../../contexts/ConverterContext";
 
 const useConverter = () => {
+  const {
+    values: { fromCurrency, toCurrency, fromAmount, toAmount },
+    handlres: {
+      updateLoading,
+      updateFromAmount,
+      updateToAmount,
+      updateFromCurrency,
+      updateToCurrency,
+    },
+  } = useContext(ConverterContext);
 
-  const [currencyOptions, setCurrencyOptions] = useState([])
-  const [fromCurrency, setFromCurrency] = useState()
-  const [toCurrency, setToCurrency] = useState()
-  const [exchangeRate, setExchangeRate] = useState()
-  const [amount, setAmount] = useState(1)
+  const [changeInFrom, setChangeInFrom] = useState(true);
+  const [exchangeRate, setExchangeRate] = useState(1);
 
-    let toAmount, fromAmount;
-
- 
-    fromAmount = amount
-    toAmount = amount * exchangeRate
-
+  const handlers = useRef({
+    updateLoading,
+    updateFromAmount,
+    updateToAmount,
+    updateFromCurrency,
+    updateToCurrency,
+  });
 
   useEffect(() => {
-    fetch(BASE_URL)
-      .then(res => res.json())
-      .then(data => {
-        const firstCurrency = Object.keys(data.rates)[0]
-        setCurrencyOptions([data.base, ...Object.keys(data.rates)])
-        setFromCurrency(data.base)
-        setToCurrency(firstCurrency)
-        setExchangeRate(data.rates[firstCurrency])
+    handlers.current.updateLoading(true);
+    fetch(URL_CONVERT(fromCurrency, toCurrency))
+      .then((res) => res.json())
+      .then((data) => {
+        setExchangeRate(data.result);
       })
-  }, [])
+      .finally(() => {
+        handlers.current.updateLoading(false);
+      });
+  }, [fromCurrency, toCurrency]);
 
   useEffect(() => {
-    if (fromCurrency != null && toCurrency != null) {
-      fetch(`${BASE_URL}?base=${fromCurrency}&symbols=${toCurrency}`)
-        .then(res => res.json())
-        .then(data => setExchangeRate(data.rates[toCurrency]))
-    }
-  }, [fromCurrency, toCurrency])
+    changeInFrom
+      ? handlers.current.updateToAmount(fromAmount * exchangeRate)
+      : handlers.current.updateFromAmount(toAmount * (1 / exchangeRate));
+  }, [changeInFrom, exchangeRate, fromAmount, toAmount]);
 
-  function handleFromAmountChange(e) {
-    setAmount(e.target.value)
-    setAmountInFromCurrency(true)
+  function handleAmountFrom(e) {
+    updateFromAmount(e.target.value);
+    setChangeInFrom(true);
   }
 
-  function handleToAmountChange(e) {
-    setAmount(e.target.value)
-    setAmountInFromCurrency(false)
-    }
-    
-    return {
-        handleFromAmountChange,
-        handleToAmountChange,
-        currencyOptions,
-        toAmount,
-        fromAmount
-    }
-}
+  function handleCurrencyFrom(e) {
+    updateFromCurrency(e.target.value);
+    setChangeInFrom(true);
+  }
 
-export default useConverter
+  function handleAmountTo(e) {
+    updateToAmount(e.target.value);
+    setChangeInFrom(false);
+  }
+
+  function handleCurrencyTo(e) {
+    updateToCurrency(e.target.value);
+    setChangeInFrom(false);
+  }
+
+
+  return {
+    handleAmountFrom,
+    handleCurrencyFrom,
+    handleAmountTo,
+    handleCurrencyTo,
+    exchangeRate,
+ 
+  };
+};
+
+export default useConverter;

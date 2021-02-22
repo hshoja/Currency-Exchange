@@ -1,15 +1,17 @@
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import ConverterContext from "./ConverterContext";
 import { Currencies } from "../pages/currencies";
+import CurrenciesProvider from "../providers/CurrenciesProvider";
 
 describe("Test Context Provider", () => {
   const customRender = (ui, values) =>
     render(
-      <ConverterContext.Provider value={values}>{ui}</ConverterContext.Provider>
+      <CurrenciesProvider.Provider value={values}>
+        {ui}
+      </CurrenciesProvider.Provider>
     );
 
-  test("ConverterProvider shows value from provider", () => {
+  test("CurrenciesProvider shows value from provider", () => {
     const values = {
       rates: [
         ["AUD", 1.268762],
@@ -22,7 +24,5 @@ describe("Test Context Provider", () => {
     };
     customRender(<Currencies />, values);
     expect(screen.queryAllByTestId("row")).toHaveLength(3);
-    
-    
   });
 });
