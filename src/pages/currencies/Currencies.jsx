@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,20 +7,13 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-
 import { PageTitle } from "../../components";
+import useCurrencies from "./useCurrencies";
+import { COLORS, SYMBOLS } from "../../constants";
+import { LinearProgress } from "@material-ui/core";
+import ConverterContext from "../../contexts/ConverterContext";
+import { GetArray } from "../../utils/array";
 
-const rows = [
-  createData("EUR", "Euro", 0.836),
-  createData("JPY", "Japanese yen", 100.836),
-  createData("EUR", "Euro", 0.836),
-  createData("EUR", "Euro", 0.836),
-  createData("EUR", "Euro", 0.836),
-];
-
-function createData(currency, name, rate) {
-  return { currency, name, rate };
-}
 const useStyles = makeStyles({
   table: {
     // minWidth: 650,
@@ -29,16 +22,20 @@ const useStyles = makeStyles({
     borderWidth: "0",
   },
   header: {
-    backgroundColor: "#F0F1F4",
+    backgroundColor: COLORS.secondary,
   },
 });
 
 const Currencies = () => {
   const classes = useStyles();
+    useCurrencies();
+    const {rates}=useContext(ConverterContext)
+
   return (
     <>
       <PageTitle title="US Dollar (USD) Exchange Rats" />
       <TableContainer component={Paper}>
+       
         <Table className={classes.table} aria-label="simple table">
           <TableHead>
             <TableRow className={classes.header}>
@@ -48,13 +45,17 @@ const Currencies = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                {Object.keys(row).map((field) => (
-                  <TableCell align="left" className={classes.cell} key={field}>
-                    {row[field]}
-                  </TableCell>
-                ))}
+            {GetArray(rates).map(([symbol, rate]) => (
+              <TableRow key={symbol}>
+                <TableCell align="left" className={classes.cell}>
+                  {symbol}
+                </TableCell>
+                <TableCell align="left" className={classes.cell}>
+                  {SYMBOLS[symbol].description}
+                </TableCell>
+                <TableCell align="left" className={classes.cell}>
+                  {rate}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
