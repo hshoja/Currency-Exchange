@@ -21,4 +21,3 @@ it also has:
     * react-router for routing;
     * Material UI
     * Test-Library/React
-    
