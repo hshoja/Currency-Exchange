@@ -1,5 +1,5 @@
-import { MenuItem, TextField, Typography } from "@material-ui/core";
 import React from "react";
+import { MenuItem, TextField, Typography } from "@material-ui/core";
 import { useStyle } from "./input.style";
 
 const InputSelect = ({ title, items, value, onChange }) => {

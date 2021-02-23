@@ -1,15 +1,14 @@
-import { Grid, LinearProgress } from "@material-ui/core";
 import React, { useContext } from "react";
-import { Navbar } from "..";
+import { Grid, LinearProgress } from "@material-ui/core";
 import ConverterContext from "../../contexts/ConverterContext";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
+import { Navbar } from "..";
 import { useStyle } from "./layout.style";
 
 const Layout = ({ children }) => {
-  
-  const { loading } = useContext(ConverterContext);
+  const { values:{loading} } = useContext(ConverterContext);
   const { loading: loading2 } = useContext(CurrenciesContext);
-
+ 
   const classes = useStyle();
   return (
     <Grid container justify="center">

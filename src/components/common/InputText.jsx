@@ -1,10 +1,9 @@
+import React from "react";
 import {
   InputAdornment,
-  makeStyles,
   OutlinedInput,
-  Typography,
+  Typography
 } from "@material-ui/core";
-import React from "react";
 import { useStyle } from "./input.style";
 
 const InputText = ({ title ,symbol,value,onChange}) => {

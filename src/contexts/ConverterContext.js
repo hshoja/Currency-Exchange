@@ -3,14 +3,15 @@ import { createContext } from "react";
 export const intialState = {
   loading: false,
 
-  fromCurrency: 'USD',
-  toCurrency: 'CAD',
+  fromCurrency: "USD",
+  toCurrency: "CAD",
   fromAmount: 1,
   toAmount: undefined,
-  fromCurrencyHandleChange: () => { },
-  toCurrencyHandleChange: () => { },
-  fromAmountHandleChange: () => { },
-  toAmountHandleChange: () => { },
+  updateLoading: () => {},
+  updateFromAmount: () => {},
+  updateToAmount: () => {},
+  updateFromCurrency: () => {},
+  updateToCurrency: () => {},
 };
 const ConverterContext = createContext(intialState);
 

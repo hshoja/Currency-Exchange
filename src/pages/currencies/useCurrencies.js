@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { URL_CURRENCIES } from "../../constants";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
 

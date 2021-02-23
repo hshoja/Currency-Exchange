@@ -1,16 +1,16 @@
+import React, { useContext } from "react";
 import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import React, { useContext } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { PageTitle } from "../../components";
 import { COLORS, SYMBOLS } from "../../constants";
-import CurrenciesContext from "../../contexts/CurrenciesContext";
 import { GetArray } from "../../utils/array";
+import CurrenciesContext from "../../contexts/CurrenciesContext";
 import useCurrencies from "./useCurrencies";
 
 const useStyles = makeStyles({

@@ -1,12 +1,12 @@
-import { Box, Grid, Paper, Typography } from "@material-ui/core";
 import React, { useContext } from "react";
-import { PageTitle } from "../../components";
+import { Box, Grid, Paper, Typography } from "@material-ui/core";
+import useConverter from "./useConverter";
 import InputSelect from "../../components/common/InputSelect";
 import InputText from "../../components/common/InputText";
-import { SYMBOLS } from "../../constants/symbols";
 import ConverterContext from "../../contexts/ConverterContext";
+import { PageTitle } from "../../components";
+import { SYMBOLS } from "../../constants/symbols";
 import { useStyle } from "./converter.style";
-import useConverter from "./useConverter";
 
 const Converter = () => {
   const classes = useStyle();
