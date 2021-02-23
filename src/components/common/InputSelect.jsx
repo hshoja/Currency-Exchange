@@ -15,7 +15,6 @@ const InputSelect = ({ title, items, value, onChange }) => {
         onChange={onChange}
         variant="outlined"
         className={classes.input}
-        // inputProps={{  }}
       >
         {Object.keys(items).map((currency) => (
           <MenuItem key={currency} value={currency}>

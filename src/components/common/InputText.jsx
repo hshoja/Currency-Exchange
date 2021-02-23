@@ -6,7 +6,7 @@ import {
 } from "@material-ui/core";
 import { useStyle } from "./input.style";
 
-const InputText = ({ title ,symbol,value,onChange}) => {
+const InputText = ({ title ,symbol='',value,onChange}) => {
   
   const classes = useStyle();
 
@@ -18,7 +18,7 @@ const InputText = ({ title ,symbol,value,onChange}) => {
         value={value}
         onChange={onChange}
         variant="outlined"
-        className={classes.input}
+        className={classes?.input}
         endAdornment={<InputAdornment position="start">{symbol}</InputAdornment>}
       />
     </>

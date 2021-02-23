@@ -4,7 +4,7 @@ import ConverterContext from "../contexts/ConverterContext";
 const ConverterProvider = ({ children }) => {
   const [loading, updateLoading] = useState(false);
   const [fromAmount, updateFromAmount] = useState(1);
-  const [toAmount, updateToAmount] = useState(undefined);
+  const [toAmount, updateToAmount] = useState('');
   const [fromCurrency, updateFromCurrency] = useState("USD");
   const [toCurrency, updateToCurrency] = useState("CAD");
 
