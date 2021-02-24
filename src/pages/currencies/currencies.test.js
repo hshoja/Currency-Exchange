@@ -27,8 +27,8 @@ describe("Currencies", () => {
     const values = {
       rates: [["AUD", "1.268762"]],
       loading: false,
-      updateRates: () => {},
-      updateLoading: () => {},
+      setRates: () => {},
+      setLoading: () => {},
     };
     customRender(<Currencies />, values);
     expect(screen.getByText("AUD")).toBeTruthy();

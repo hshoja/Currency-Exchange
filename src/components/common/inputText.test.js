@@ -26,11 +26,11 @@ describe("Input Text", () => {
       toAmount: "",
     },
     handlres: {
-      updateLoading: () => {},
-      updateFromAmount: () => {},
-      updateToAmount: () => {},
-      updateFromCurrency: () => {},
-      updateToCurrency: () => {},
+      setLoading: () => {},
+      setFromAmount: () => {},
+      setToAmount: () => {},
+      setFromCurrency: () => {},
+      setToCurrency: () => {},
     },
   };
 
