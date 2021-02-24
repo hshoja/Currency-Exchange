@@ -1,6 +1,7 @@
 import { useCallback, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {Paper,
+import {
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -26,7 +27,7 @@ const useStyles = makeStyles({
 const Currencies = () => {
   const classes = useStyles();
   useCurrencies();
-  const rates = useContext(CurrenciesContext).rates;
+  const { rates } = useContext(CurrenciesContext);
 
   const renderRates = useCallback(
     ([symbol, rate]) => (

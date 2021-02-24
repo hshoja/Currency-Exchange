@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { urlConvert } from "../../constants/urls";
 import ConverterContext from "../../contexts/ConverterContext";
+import { fetchData } from "../../utils/api";
 
 const useConverter = () => {
   const {
@@ -19,8 +20,7 @@ const useConverter = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(urlConvert(fromCurrency, toCurrency))
-      .then((res) => res.json())
+    fetchData(urlConvert(fromCurrency, toCurrency))
       .then((data) => {
         setExchangeRate(data.result);
       })

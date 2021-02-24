@@ -1,5 +1,7 @@
 import { createContext } from "react";
 
+// TODO: another way that I used when then number of state and actions are much is useReducer instead of useSate
+
 export const intialState = {
   values: {
     loading: false,
@@ -9,11 +11,11 @@ export const intialState = {
     toAmount: "",
   },
   handlres: {
-    updateLoading: () => {},
-    updateFromAmount: () => {},
-    updateToAmount: () => {},
-    updateFromCurrency: () => {},
-    updateToCurrency: () => {},
+    setLoading: () => {},
+    setFromAmount: () => {},
+    setToAmount: () => {},
+    setFromCurrency: () => {},
+    setToCurrency: () => {},
   },
 };
 const ConverterContext = createContext(intialState);

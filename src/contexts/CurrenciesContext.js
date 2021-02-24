@@ -4,8 +4,8 @@ export const intialState = {
   loading: false,
 
   rates: [],
-  updateRates: () => {},
-  updateLoading: () => {},
+  setRates: () => {},
+  setLoading: () => {},
 };
 const CurrenciesContext = createContext(intialState);
 

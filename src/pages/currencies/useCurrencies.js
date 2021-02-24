@@ -1,17 +1,19 @@
 import { useContext, useEffect } from "react";
-import { URL_CURRENCIES } from "../../constants";
+import { urlCurrencies } from "../../constants/urls";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
+import { fetchData } from "../../utils/api";
 
 const useCurrencies = () => {
-  const { updateRates, updateLoading } = useContext(CurrenciesContext);
+  const { setRates, setLoading } = useContext(CurrenciesContext);
 
   useEffect(() => {
-    updateLoading(true);
-    fetch(URL_CURRENCIES)
-      .then((res) => res.json())
-      .then((res) => updateRates(Object.entries(res.rates)))
-      .finally(() => updateLoading(false));
-  }, [updateLoading, updateRates]);
+    setLoading(true);
+    fetchData(urlCurrencies())
+      .then((res) => {
+        res.rates && setRates(Object.entries(res.rates));
+      })
+      .finally(() => setLoading(false));
+  }, [setLoading, setRates]);
 };
 
 export default useCurrencies;
