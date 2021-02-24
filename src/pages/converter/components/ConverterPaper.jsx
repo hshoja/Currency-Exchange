@@ -3,7 +3,7 @@ import {
   CircularProgress,
   Grid,
   Paper,
-  Typography
+  Typography,
 } from "@material-ui/core";
 import { Suspense } from "react";
 import InputSelect from "../../../components/common/InputSelect";
@@ -42,7 +42,7 @@ const ConverterPaper = ({
       </Suspense>
       <Box p={3}>
         <Typography>
-          1 {currency} = {exchangeRate} {toCurrency}
+          1 {currency} = {exchangeRate.toFixed(6)} {toCurrency}
         </Typography>
       </Box>
     </Grid>
