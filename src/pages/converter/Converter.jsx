@@ -6,7 +6,6 @@ import ConverterPaper from "./components/ConverterPaper";
 import useConverter from "./useConverter";
 
 const Converter = () => {
-  
   const {
     handleAmountFrom,
     handleCurrencyFrom,
@@ -15,7 +14,9 @@ const Converter = () => {
     exchangeRate,
   } = useConverter();
 
-  const { fromAmount, toAmount } = useContext(ConverterContext).values;
+  const { fromAmount, toAmount, fromCurrency, toCurrency } = useContext(
+    ConverterContext
+  ).values;
 
   return (
     <>
@@ -28,12 +29,16 @@ const Converter = () => {
           handleAmount={handleAmountFrom}
           handleCurrency={handleCurrencyFrom}
           amount={fromAmount}
+          currency={fromCurrency}
+          toCurrency={toCurrency}
           exchangeRate={exchangeRate}
         />
         <ConverterPaper
           handleAmount={handleAmountTo}
           handleCurrency={handleCurrencyTo}
           amount={toAmount}
+          currency={toCurrency}
+          toCurrency={fromCurrency}
           exchangeRate={1 / exchangeRate}
         />
       </Grid>

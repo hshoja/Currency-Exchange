@@ -3,24 +3,23 @@ import {
   CircularProgress,
   Grid,
   Paper,
-  Typography,
+  Typography
 } from "@material-ui/core";
-import { lazy, Suspense, useContext } from "react";
-import { ConverterContext } from "../../../contexts";
+import { Suspense } from "react";
+import InputSelect from "../../../components/common/InputSelect";
+import InputText from "../../../components/common/InputText";
 import { SYMBOLS } from "../../../constants";
 import { useStyle } from "../converter.style";
-
-const InputText = lazy(() => import("../../../components/common/InputText"));
-const InputSelect = lazy(() => import("../../../components/common/InputSelect"));
 
 const ConverterPaper = ({
   handleAmount,
   handleCurrency,
   amount,
+  currency,
+  toCurrency,
   exchangeRate,
 }) => {
   const classes = useStyle();
-  const { fromCurrency, toCurrency } = useContext(ConverterContext).values;
 
   return (
     <Grid item xs={12} md={6}>
@@ -30,20 +29,20 @@ const ConverterPaper = ({
             items={SYMBOLS}
             title="Currency"
             onChange={handleCurrency}
-            value={toCurrency}
+            value={currency}
           />
           <Box mt={3} />
           <InputText
             title="Enter Amount"
             value={amount}
             onChange={handleAmount}
-            symbol={SYMBOLS[toCurrency].symbol}
+            symbol={SYMBOLS[currency].symbol}
           />
         </Paper>
       </Suspense>
       <Box p={3}>
         <Typography>
-          1 {toCurrency} = {exchangeRate.toFixed(6)} {fromCurrency}
+          1 {currency} = {exchangeRate} {toCurrency}
         </Typography>
       </Box>
     </Grid>
