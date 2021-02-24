@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { URL_CONVERT } from "../../constants/urls";
 import ConverterContext from "../../contexts/ConverterContext";
 
@@ -44,26 +44,26 @@ const useConverter = () => {
       : handlers.current.updateFromAmount(toAmount * (1 / exchangeRate));
   }, [changeInFrom, exchangeRate, fromAmount, toAmount]);
 
-  function handleAmountFrom(e) {
-    updateFromAmount(e.target.value);
+
+  const handleAmountFrom = useCallback((e) => {
+    handlers.current.updateFromAmount(e.target.value);
     setChangeInFrom(true);
-  }
+  }, []);
 
-  function handleCurrencyFrom(e) {
-    updateFromCurrency(e.target.value);
+  const handleCurrencyFrom = useCallback((e) => {
+    handlers.current.updateFromCurrency(e.target.value);
     setChangeInFrom(true);
-  }
+  }, []);
 
-  function handleAmountTo(e) {
-    updateToAmount(e.target.value);
+  const handleAmountTo = useCallback((e) => {
+    handlers.current.updateToAmount(e.target.value);
     setChangeInFrom(false);
-  }
+  }, []);
 
-  function handleCurrencyTo(e) {
-    updateToCurrency(e.target.value);
+  const handleCurrencyTo = useCallback((e) => {
+    handlers.current.updateToCurrency(e.target.value);
     setChangeInFrom(false);
-  }
-
+  }, []);
 
   return {
     handleAmountFrom,

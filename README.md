@@ -10,7 +10,13 @@ The application consist of two pages:
 it also has:
 
     * Tests;
-    * Application performance (both when loading the application and when converting currencies);
+    * Application performance 
+       - [*] lazy loading and suspense
+       - [*] use callback and memo
+       - [*] checked by profiler
+       - [-] cache is not needed
+       - [-] compression and gzipping
+
 
  it uses:
 

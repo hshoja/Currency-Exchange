@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import { MenuItem, TextField, Typography } from "@material-ui/core";
 import { useStyle } from "./input.style";
 
@@ -9,7 +9,6 @@ const InputSelect = ({ title, items, value, onChange }) => {
     <>
       <Typography>{title}</Typography>
       <TextField
-        id="outlined-select-currency"
         select
         value={value}
         onChange={onChange}
@@ -26,4 +25,4 @@ const InputSelect = ({ title, items, value, onChange }) => {
   );
 };
 
-export default InputSelect;
+export default memo(InputSelect);

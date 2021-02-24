@@ -1,4 +1,4 @@
-import React from "react";
+import {memo} from "react";
 import { Box, Grid } from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 import { useStyle } from "./navbar.style";
@@ -33,4 +33,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);

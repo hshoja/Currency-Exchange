@@ -1,4 +1,4 @@
-import React from "react";
+import { memo } from "react";
 import { Box, Typography } from "@material-ui/core";
 
 const PageTitle = ({ title, description }) => {
@@ -14,6 +14,6 @@ const PageTitle = ({ title, description }) => {
       )}
     </Box>
   );
-};      
+};
 
-export default PageTitle;
+export default memo(PageTitle);

@@ -1,12 +1,20 @@
-import React, { useContext } from "react";
-import { Box, Grid, Paper, Typography } from "@material-ui/core";
+import React, { lazy, Suspense, useContext } from "react";
+import {
+  Box,
+  CircularProgress,
+  Grid,
+  Paper,
+  Typography,
+} from "@material-ui/core";
 import useConverter from "./useConverter";
-import InputSelect from "../../components/common/InputSelect";
-import InputText from "../../components/common/InputText";
+
 import ConverterContext from "../../contexts/ConverterContext";
 import { PageTitle } from "../../components";
 import { SYMBOLS } from "../../constants/symbols";
 import { useStyle } from "./converter.style";
+
+const InputText = lazy(() => import("../../components/common/InputText"));
+const InputSelect = lazy(() => import("../../components/common/InputSelect"));
 
 const Converter = () => {
   const classes = useStyle();
@@ -14,8 +22,8 @@ const Converter = () => {
     handleAmountFrom,
     handleCurrencyFrom,
     handleAmountTo,
-    handleCurrencyTo
-   , exchangeRate,
+    handleCurrencyTo,
+    exchangeRate,
   } = useConverter();
   const {
     values: { fromCurrency, toCurrency, fromAmount, toAmount },
@@ -28,21 +36,23 @@ const Converter = () => {
       />
       <Grid container spacing={6}>
         <Grid item xs={12} md={6}>
-          <Paper elevation={0} className={classes.paper}>
-            <InputSelect
-              items={SYMBOLS}
-              title="Currency"
-              onChange={handleCurrencyFrom}
-              value={fromCurrency}
-            />
-            <Box mt={3} />
-            <InputText
-              title="Enter Amount"
-              value={fromAmount}
-              onChange={handleAmountFrom}
-              symbol={SYMBOLS[fromCurrency].symbol}
-            />
-          </Paper>
+          <Suspense fallback={<CircularProgress />}>
+            <Paper elevation={0} className={classes.paper}>
+              <InputSelect
+                items={SYMBOLS}
+                title="Currency"
+                onChange={handleCurrencyFrom}
+                value={fromCurrency}
+              />
+              <Box mt={3} />
+              <InputText
+                title="Enter Amount"
+                value={fromAmount}
+                onChange={handleAmountFrom}
+                symbol={SYMBOLS[fromCurrency].symbol}
+              />
+            </Paper>
+          </Suspense>
           <Box p={3}>
             <Typography>
               1 {fromCurrency} = {exchangeRate} {toCurrency}
@@ -50,24 +60,26 @@ const Converter = () => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          <Paper elevation={0} className={classes.paper}>
-            <InputSelect
-              items={SYMBOLS}
-              title="Currency"
-              onChange={handleCurrencyTo}
-              value={toCurrency}
-            />
-            <Box mt={3} />
-            <InputText
-              title="Enter Amount"
-              value={toAmount}
-              onChange={handleAmountTo}
-              symbol={SYMBOLS[toCurrency].symbol}
-            />
-          </Paper>
+          <Suspense fallback={<CircularProgress />}>
+            <Paper elevation={0} className={classes.paper}>
+              <InputSelect
+                items={SYMBOLS}
+                title="Currency"
+                onChange={handleCurrencyTo}
+                value={toCurrency}
+              />
+              <Box mt={3} />
+              <InputText
+                title="Enter Amount"
+                value={toAmount}
+                onChange={handleAmountTo}
+                symbol={SYMBOLS[toCurrency].symbol}
+              />
+            </Paper>
+          </Suspense>
           <Box p={3}>
             <Typography>
-              1 {toCurrency} = {(1/exchangeRate).toFixed(6)} {fromCurrency}
+              1 {toCurrency} = {(1 / exchangeRate).toFixed(6)} {fromCurrency}
             </Typography>
           </Box>
         </Grid>
