@@ -21,6 +21,7 @@ export const useStyle = makeStyles({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    textAlign:'center'
   },
   selectedlink: {
     fontWeight: 900,
