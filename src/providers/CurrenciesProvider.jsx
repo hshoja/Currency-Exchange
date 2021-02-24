@@ -1,13 +1,10 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import CurrenciesContext from "../contexts/CurrenciesContext";
 
 const CurrenciesProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [rates, setRates] = useState(false);
-  const updateLoading = (value) => setLoading(value);
-  const updateRates = (values) => setRates(values);
-
-  const updatedValues = { loading, rates, updateLoading, updateRates };
+  const updatedValues = { loading, rates, setLoading, setRates };
 
   return (
     <CurrenciesContext.Provider value={updatedValues}>

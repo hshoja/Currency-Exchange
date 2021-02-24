@@ -1,4 +1,3 @@
-import React from "react";
 import ConverterProvider from "./ConverterProvider";
 import CurrenciesProvider from "./CurrenciesProvider";
 

@@ -5,7 +5,7 @@ export const intialState = {
     loading: false,
     fromCurrency: "USD",
     toCurrency: "CAD",
-    fromAmount: "1000",
+    fromAmount: "1",
     toAmount: "",
   },
   handlres: {

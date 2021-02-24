@@ -7,8 +7,7 @@ import { Layout } from "./components";
 const Converter = lazy(() => import("./pages/converter/Converter"));
 const Currencies = lazy(() => import("./pages/currencies/Currencies"));
 
-function App() {
-  return (
+const App = () => (
     <AllProviders>
       <Layout>
         <Switch>
@@ -20,6 +19,5 @@ function App() {
       </Layout>
     </AllProviders>
   );
-}
 
 export default App;
