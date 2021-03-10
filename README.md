@@ -15,7 +15,6 @@ it also has:
        - [*] use callback and memo
        - [*] checked by profiler
        - [-] cache is not needed
-       - [-] compression and gzipping
 
 
  it uses:
