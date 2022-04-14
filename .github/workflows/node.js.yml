@@ -37,4 +37,4 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           config: pageLoadTimeout=200000,baseUrl=http://localhost:3000
-          start: yarn start
+          start: npm start
