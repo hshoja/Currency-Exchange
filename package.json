@@ -19,8 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cypress:run": "cypress run",
-    "cypress:open": "cypress open "
+    "cypress:open": "cypress open --config pageLoadTimeout=30000,baseUrl=http://localhost:3000",
+    "cypress:run": "cypress run --config pageLoadTimeout=30000,baseUrl=https//localhost:3000"
   },
   "eslintConfig": {
     "extends": [
