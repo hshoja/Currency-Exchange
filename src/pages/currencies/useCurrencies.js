@@ -1,18 +1,25 @@
 import { useContext, useEffect } from "react";
-import { urlCurrencies } from "../../constants/urls";
+import { getLatestRates } from "../../clients/currencyClient";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
-import { fetchData } from "../../utils/api";
 
 const useCurrencies = () => {
   const { setRates, setLoading } = useContext(CurrenciesContext);
 
   useEffect(() => {
-    setLoading(true);
-    fetchData(urlCurrencies())
-      .then((res) => {
-        res.rates && setRates(Object.entries(res.rates));
-      })
-      .finally(() => setLoading(false));
+    const fetchRates = async () => {
+      setLoading(true);
+      try {
+        const rates = await getLatestRates();
+        setRates(Object.entries(rates));
+      } catch (error) {
+        console.error('Failed to fetch currency rates:', error);
+        setRates([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchRates();
   }, [setLoading, setRates]);
 };
 

@@ -1,11 +1,10 @@
 import { Grid } from "@material-ui/core";
-import { useContext } from "react";
 import { PageTitle } from "../../components";
-import ConverterContext from "../../contexts/ConverterContext";
+import useConverterContext from "../../hooks/useConverterContext";
 import ConverterPaper from "./components/ConverterPaper";
 import useConverter from "./useConverter";
 
-const Converter = () => {
+export const Converter = () => {
   const {
     handleAmountFrom,
     handleCurrencyFrom,
@@ -14,9 +13,7 @@ const Converter = () => {
     exchangeRate,
   } = useConverter();
 
-  const { fromAmount, toAmount, fromCurrency, toCurrency } = useContext(
-    ConverterContext
-  ).values;
+  const { fromAmount, toAmount, fromCurrency, toCurrency } = useConverterContext().values;
 
   return (
     <>
@@ -46,4 +43,3 @@ const Converter = () => {
   );
 };
 
-export default Converter;

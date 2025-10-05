@@ -11,7 +11,8 @@ import {
 } from "@material-ui/core";
 
 import { PageTitle } from "../../components";
-import { COLORS, SYMBOLS } from "../../constants";
+import { COLORS } from "../../constants/colors";
+import { SYMBOLS } from "../../constants/symbols";
 import CurrenciesContext from "../../contexts/CurrenciesContext";
 import useCurrencies from "./useCurrencies";
 

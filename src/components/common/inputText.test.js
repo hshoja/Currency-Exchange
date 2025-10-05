@@ -25,7 +25,7 @@ describe("Input Text", () => {
       fromAmount: "1000",
       toAmount: "",
     },
-    handlres: {
+    handlers: {
       setLoading: () => {},
       setFromAmount: () => {},
       setToAmount: () => {},

@@ -1,12 +1,12 @@
 import { createContext } from "react";
 
-export const intialState = {
+export const initialState = {
   loading: false,
-
   rates: [],
   setRates: () => {},
   setLoading: () => {},
 };
-const CurrenciesContext = createContext(intialState);
+
+const CurrenciesContext = createContext(initialState);
 
 export default CurrenciesContext;

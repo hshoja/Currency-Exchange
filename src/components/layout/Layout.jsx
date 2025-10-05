@@ -1,13 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, LinearProgress } from "@material-ui/core";
-import ConverterContext from "../../contexts/ConverterContext";
-import CurrenciesContext from "../../contexts/CurrenciesContext";
+import useConverterContext from "../../hooks/useConverterContext";
+import useCurrenciesContext from "../../hooks/useCurrenciesContext";
 import { Navbar } from "..";
 import { useStyle } from "./layout.style";
 
 const Layout = ({ children }) => {
-  const { values:{loading} } = useContext(ConverterContext);
-  const { loading: loading2 } = useContext(CurrenciesContext);
+  const { values: { loading } } = useConverterContext();
+  const { loading: loading2 } = useCurrenciesContext();
  
   const classes = useStyle();
   return (
@@ -21,6 +22,10 @@ const Layout = ({ children }) => {
       </Grid>
     </Grid>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

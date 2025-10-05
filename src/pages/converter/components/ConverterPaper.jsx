@@ -8,7 +8,7 @@ import {
 import { Suspense } from "react";
 import InputSelect from "../../../components/common/InputSelect";
 import InputText from "../../../components/common/InputText";
-import { SYMBOLS } from "../../../constants";
+import { SYMBOLS } from "../../../constants/symbols";
 import { useStyle } from "../converter.style";
 
 const ConverterPaper = ({

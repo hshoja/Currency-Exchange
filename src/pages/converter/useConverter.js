@@ -1,32 +1,38 @@
-import { useCallback, useContext, useEffect, useState } from "react";
-import { urlConvert } from "../../constants/urls";
-import ConverterContext from "../../contexts/ConverterContext";
-import { fetchData } from "../../utils/api";
+import { useCallback, useEffect, useState } from "react";
+import { EXCHANGE_RATE_FALLBACK } from "../../constants/defaults";
+import useConverterContext from "../../hooks/useConverterContext";
+import { getExchangeRate } from "../../clients/currencyClient";
 
 const useConverter = () => {
   const {
     values: { fromCurrency, toCurrency, fromAmount, toAmount },
-    handlres: {
+    handlers: {
       setLoading,
       setFromAmount,
       setToAmount,
       setFromCurrency,
       setToCurrency,
     },
-  } = useContext(ConverterContext);
+  } = useConverterContext();
 
   const [changeInFrom, setChangeInFrom] = useState(true);
-  const [exchangeRate, setExchangeRate] = useState(1);
+  const [exchangeRate, setExchangeRate] = useState(EXCHANGE_RATE_FALLBACK);
 
   useEffect(() => {
-    setLoading(true);
-    fetchData(urlConvert(fromCurrency, toCurrency))
-      .then((data) => {
-        setExchangeRate(data.result);
-      })
-      .finally(() => {
+    const fetchExchangeRate = async () => {
+      setLoading(true);
+      try {
+        const rate = await getExchangeRate(fromCurrency, toCurrency);
+        setExchangeRate(rate || EXCHANGE_RATE_FALLBACK);
+      } catch (error) {
+        console.error('Failed to fetch exchange rate:', error);
+        setExchangeRate(EXCHANGE_RATE_FALLBACK); // Fallback to 1:1 rate
+      } finally {
         setLoading(false);
-      });
+      }
+    };
+
+    fetchExchangeRate();
   }, [fromCurrency, toCurrency, setLoading]);
 
   useEffect(() => {

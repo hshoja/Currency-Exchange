@@ -1,16 +1,17 @@
 import { createContext } from "react";
+import { DEFAULT_CURRENCIES, DEFAULT_AMOUNTS } from '../constants/defaults';
 
-// TODO: another way that I used when then number of state and actions are much is useReducer instead of useSate
+// TODO: Consider using useReducer when the number of state and actions increases significantly
 
-export const intialState = {
+export const initialState = {
   values: {
     loading: false,
-    fromCurrency: "USD",
-    toCurrency: "CAD",
-    fromAmount: "1",
-    toAmount: "",
+    fromCurrency: DEFAULT_CURRENCIES.FROM,
+    toCurrency: DEFAULT_CURRENCIES.TO,
+    fromAmount: DEFAULT_AMOUNTS.FROM,
+    toAmount: DEFAULT_AMOUNTS.TO,
   },
-  handlres: {
+  handlers: {
     setLoading: () => {},
     setFromAmount: () => {},
     setToAmount: () => {},
@@ -18,6 +19,7 @@ export const intialState = {
     setToCurrency: () => {},
   },
 };
-const ConverterContext = createContext(intialState);
+
+const ConverterContext = createContext(initialState);
 
 export default ConverterContext;
